@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import dataframe.Column;
 import dataframe.DataFrame;
 
 public class FileProcessor {
@@ -30,12 +29,7 @@ public class FileProcessor {
 				values[line] = readLine(scanner.nextLine(), columns);
 			}
 			
-			double[][] transpose = transpose(values);
-			Column[] cols = new Column[values.length];
-			for (int i = 0; i < values.length; i++) {
-				cols[i] = new Column(values[i]);
-			}
-			dataframe = new DataFrame(headers, cols);
+			dataframe = new DataFrame(headers, values);
 			
 			scanner.close();
 		}
@@ -44,7 +38,6 @@ public class FileProcessor {
 		}
 		
 		return dataframe;
-		
 	}
 	
 	public static double[] readLine(String line, int columns) {
@@ -75,27 +68,8 @@ public class FileProcessor {
 		return lines;
 	}
 	
-	/**
-	 * 
-	 * 
-	 * @param values
-	 * @return
-	 */
-	public static double[][] transpose(double[][] values) {
-		int originalRows = values.length;
-		int originalCols = values[0].length;
-		double[][] transpose = new double[originalCols][originalRows];
-		
-		for (int r = 0; r < originalRows; r++) {
-			for (int c = 0; c < originalCols; c++) {
-				transpose[c][r] = values[r][c];
-			}
-		}
-		
-		return transpose;
-	}
-	
 	public static void writeFile(String path) {
+		
 		
 	}
 

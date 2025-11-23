@@ -24,6 +24,32 @@ public class DataFrame {
 	}
 	
 	/**
+	 * Creates a new DataFrame from an array
+	 * 
+	 * @param headers column headers
+	 * @param values array of values
+	 */
+	public DataFrame(String[] headers, double[][] values) {
+		int originalRows = values.length;
+		int originalCols = values[0].length;
+		double[][] transpose = new double[originalCols][originalRows];
+		
+		for (int r = 0; r < originalRows; r++) {
+			for (int c = 0; c < originalCols; c++) {
+				transpose[c][r] = values[r][c];
+			}
+		}
+		
+		Column[] cols = new Column[transpose.length];
+		for (int i = 0; i < transpose.length; i++) {
+			cols[i] = new Column(transpose[i]);
+		}
+		
+		this.headers = headers;
+		this.columns = cols;
+	}
+	
+	/**
 	 * Creates empty DataFrame
 	 */
 	public DataFrame() {

@@ -56,7 +56,7 @@ public class Column {
 	/**
 	 * Subtract a column from this column
 	 * 
-	 * @param column to subtract from this column
+	 * @param column to subtract by
 	 * @return resulting column
 	 */
 	public Column subract(Column other) {
@@ -113,5 +113,73 @@ public class Column {
 		return new Column(result);
 	}
 	
+	/**
+	 * Add constant to all entries of a column
+	 * 
+	 * @param number number to add
+	 * @return resulting column
+	 */
+	public Column add(Number number) {
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) + (Double)number;
+		}
+		
+		return new Column(result);
+	}
+	
+	/**
+	 * Subtract constant from all entries of a column
+	 * 
+	 * @param number number to subtract
+	 * @return resulting column
+	 */
+	public Column subtract(Number number) {
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) - (Double)number;
+		}
+		
+		return new Column(result);
+	}
+	
+	/**
+	 * Multiply all entries of column by a constant
+	 * 
+	 * @param number number to multiply by
+	 * @return resulting column
+	 */
+	public Column multiply(Number number) {
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) * (Double)number;
+		}
+		
+		return new Column(result);
+	}
+	
+	/**
+	 * Divide all entries of column by a constant
+	 * 
+	 * @param number number to divide by
+	 * @return resulting column
+	 */
+	public Column divide(Number number) {
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) / (Double)number;
+		}
+		
+		return new Column(result);
+	}
+	
+	public Column rollingAverage(int window) {
+		
+		return new Column();
+	}
 	
 }
