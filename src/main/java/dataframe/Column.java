@@ -2,40 +2,116 @@ package dataframe;
 
 public class Column {
 	
-	/** Column header */
-	private String header;
-	
 	/** Column data */
-	private double[] data;
+	private double[] values;
 	
-	public Column(String header, double[] data) {
-		this.header = header;
-		this.data = data;
+	/**
+	 * Create new column
+	 * 
+	 * @param values
+	 */
+	public Column(double[] values) {
+		this.values = values;
 	}
 	
-	public String getHeader() {
-		return this.header;
+	/**
+	 * Get value at index
+	 * 
+	 * @param index
+	 * @return value at index
+	 */
+	public double get(int index) {
+		return values[index];
 	}
 	
-	public double getEntry(int index) {
-		return data[index - 1];
+	/**
+	 * Get length of column
+	 * 
+	 * @return length of column
+	 */
+	public int length() {
+		return values.length;
 	}
 	
-	public Column multiply(Column other) {
-		
-	}
-	
-	public Column divide(Column other) {
-	
-	}
-	
+	/**
+	 * Add values of two columns
+	 * 
+	 * @param column to add
+	 * @return resulting column
+	 */
 	public Column add(Column other) {
+		if (this.length() != other.length()) {
+			throw new IllegalArgumentException("Column size mismatch");
+		}
 		
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) + other.get(i);
+		}
+		
+		return new Column(result);
 	}
 	
+	/**
+	 * Subtract a column from this column
+	 * 
+	 * @param column to subtract from this column
+	 * @return resulting column
+	 */
 	public Column subract(Column other) {
+		if (this.length() != other.length()) {
+			throw new IllegalArgumentException("Column size mismatch");
+		}
+		
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) - other.get(i);
+		}
+		
+		return new Column(result);
+	}
 	
+	/**
+	 * Multiply values of two columns
+	 * 
+	 * @param column to multiply
+	 * @return resulting column
+	 */
+	public Column multiply(Column other) {
+		if (this.length() != other.length()) {
+			throw new IllegalArgumentException("Column size mismatch");
+		}
+		
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) * other.get(i);
+		}
+		
+		return new Column(result);
 	}
+	
+	/**
+	 * Divide this column by another column
+	 * 
+	 * @param column to divide by
+	 * @return resulting column
+	 */
+	public Column divide(Column other) {
+		if (this.length() != other.length()) {
+			throw new IllegalArgumentException("Column size mismatch");
+		}
+		
+		double[] result = new double[this.length()];
+		
+		for (int i = 0; i < this.length(); i++) {
+			result[i] = this.get(i) / other.get(i);
+		}
+		
+		return new Column(result);
 	}
+	
 	
 }
