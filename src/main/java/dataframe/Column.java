@@ -179,7 +179,10 @@ public class Column {
 	
 	public Column rollingAverage(int window) {
 		
-		return new Column();
+	}
+	
+	public Column trim(double threshhold) {
+		
 	}
 	
 }

@@ -87,5 +87,9 @@ public class DataFrame {
 		columns[columns.length - 1] = column;
 		
 	}
+	
+	public DataFrame trim(String columnHeader, double threshhold) {
+		
+	}
 
 }
